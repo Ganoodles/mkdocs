@@ -13,11 +13,4 @@ jobs:
     - run: |
         git config --global user.name "github actions"
         git config --global user.email "none"
-        git checkout --orphan pages
-        mkdir site/
-        cp result/* site/ -r
-        mv .git/ site/
-        cd site
-        git add .
-        git commit -m "pages"
-        git push -u origin pages -f
+        nix develop --command mkdocs gh-deploy
