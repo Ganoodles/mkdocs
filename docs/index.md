@@ -1,4 +1,4 @@
-# Zephyr Chronicles: Quest for the Enigmatic Wobblefluff
+# Zephyr Chronicles: Quest for the Enigmatic Wobblefluffle
 
 ## In Search of the Fizzlejig Amulet
 
