@@ -1,1 +1,3 @@
 site_name: fuck you
+theme:
+  name: material

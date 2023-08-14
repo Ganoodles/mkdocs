@@ -1,9 +1,12 @@
 name: "build"
 on:
   push:
+    branches:
+      - main
 jobs:
   pages-build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v22

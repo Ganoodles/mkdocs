@@ -10,7 +10,7 @@
       name = "mkdocs deploy";
       version = "0.1";
       src = ./.;
-      nativeBuildInputs = [pkgs.mkdocs];
+      nativeBuildInputs = [pkgs.mkdocs pkgs.python311Packages.mkdocs-material];
       buildPhase = ''
       ${pkgs.mkdocs}/bin/mkdocs build
       mkdir -p $out
