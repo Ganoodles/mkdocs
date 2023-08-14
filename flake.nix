@@ -12,8 +12,8 @@
       src = ./.;
       nativeBuildInputs = [
         pkgs.mkdocs 
-        pkgs.python311Packages.mkdocs-material 
         pkgs.python311Packages.regex
+        pkgs.python311Packages.mkdocs-material 
         ];
       buildPhase = ''
       ${pkgs.mkdocs}/bin/mkdocs build
