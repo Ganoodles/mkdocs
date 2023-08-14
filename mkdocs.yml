@@ -1,2 +1,5 @@
 site_name: fuck you
-theme: readthedocs
+
+theme: slate
+extra_css:
+    - css/custom.css
