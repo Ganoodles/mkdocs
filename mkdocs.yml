@@ -1,5 +1,9 @@
 site_name: fuck you
-
 theme: slate
+    
+markdown_extensions:
+    - admonition
+    - fontawesome_markdown
+
 extra_css:
     - css/custom.css
