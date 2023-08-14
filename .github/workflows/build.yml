@@ -1,4 +1,4 @@
-name: build
+name: MkDocs Build and Deploy
 on:
   push:
     branches:
@@ -9,41 +9,26 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
+  deploy_job:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11.0'
 
-      - name: Display Python version
+      - name: Print Python Version
         run: python -c "import sys; print(sys.version)"
 
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Mkdocs
+      - name: Build Mkdocs
         run: mkdocs build --verbose --clean --strict
 
-      - name: Post-Mkdocs touch/copy files
-        run: |
-          touch site/.nojekyll
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          branch: gh-pages
-          folder: site
-          clean: true
+      - name: Deploy Documentation
+        run: mkdocs gh-deploy --force
