@@ -1,0 +1,23 @@
+name: "build"
+on:
+  push:
+jobs:
+  pages-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v22
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+    - run: nix build
+    - run: |
+        git config --global user.name "github actions"
+        git config --global user.email "none"
+        git checkout --orphan pages
+        mkdir site/
+        cp result/* site/ -r
+        mv .git/ site/
+        cd site
+        git add .
+        git commit -m "pages"
+        git push -u origin pages -f
